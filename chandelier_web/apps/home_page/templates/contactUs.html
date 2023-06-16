@@ -1,0 +1,100 @@
+{% extends 'baseHome.html' %}
+
+{% block title %}Contactanos{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Hero -->
+<section class="section section-header pb-11 bg-primary text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-8 text-center">
+                <h1 class="display-2 mb-3">Ponte en contacto hoy!</h1>
+                <p class="lead">
+                    ¡Estamos aquí para ayudarte! Si tienes alguna pregunta, consulta o simplemente quieres obtener más
+                    información sobre nuestros servicios, no dudes en contactarnos. Nuestro equipo de atención al
+                    cliente estará encantado de atenderte y brindarte la asistencia que necesites.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section -->
+<div class="section py-0">
+    <div class="container mt-n10">
+        <div class="row">
+            <div class="col-12">
+                <iframe class="map rounded" id="gmap_canvas"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17468.80375957843!2d-92.9877774259477!3d17.96538689924487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85edd6e2d6c16f97%3A0x82d93b6735175fb!2sClub%20Deportivo%20Tabasco!5e0!3m2!1ses!2smx!4v1685385405492!5m2!1ses!2smx"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section -->
+<section class="section section-lg pt-6">
+    <div class="container">
+        <div class="row justify-content-center mb-5 mb-lg-6">
+            <div class="col-12 col-lg-8">
+                <!-- Contact Card -->
+                <div class="card border-0 p-2 p-md-3 p-lg-5">
+                    <div class="card-header bg-white border-0 text-center">
+                        <h2>Quieres contactar con nosotros?</h2>
+                        <p>Genial! cuentanos tus dudas</p>
+                    </div>
+                    <div class="card-body px-0 pt-0">
+                        <form action="#">
+                            <!-- Form -->
+                            <div class="mb-4">
+                                <label for="name">Nombre</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon3">
+                                        <span class="fas fa-user-circle"></span>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Bonnie Green" id="name"
+                                        required />
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email">Correo</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon4">
+                                        <span class="fas fa-envelope"></span>
+                                    </span>
+                                    <input type="email" class="form-control" placeholder="example@company.com"
+                                        id="email" required />
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="affair">Asunto</label>
+                                <div class="input-group">
+                                    <!-- <span class="input-group-text" id="basic-addon4">
+                                        <span class="fas fa-h1"></span>
+                                    </span> -->
+                                    <input type="text" class="form-control" placeholder="Hi!, i have a meesage"
+                                        id="affair" required />
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message">Mensaje</label>
+                                <textarea placeholder="Your message" class="form-control" id="message" rows="4"
+                                    required></textarea>
+                            </div>
+                            <!-- End of Form -->
+                            <div class="d-grid">
+                                <button type="submit" class="btn rounded btn-secondary">
+                                    Enviar mensaje
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- End of Contact Card -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of section -->
+{% endblock %}

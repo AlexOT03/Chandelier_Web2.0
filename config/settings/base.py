@@ -74,6 +74,13 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "chandelier_web.users",
     # Your stuff: custom apps go here
+    "chandelier_web.apps.home_page",
+    "chandelier_web.apps.admin_page",
+    "chandelier_web.apps.admin_page_locations",
+    "chandelier_web.apps.admin_page_quotes",
+    "chandelier_web.apps.admin_page_services",
+    "chandelier_web.apps.admin_page_states",
+    "chandelier_web.apps.admin_page_themes",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -93,9 +100,9 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
+# LOGIN_REDIRECT_URL = "users:redirect"
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+# LOGIN_URL = "account_login"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -203,12 +210,21 @@ X_FRAME_OPTIONS = "DENY"
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND",
-    default="django.core.mail.backends.smtp.EmailBackend",
-)
+# EMAIL_BACKEND = env(
+#     "DJANGO_EMAIL_BACKEND", 
+#     default="django.core.mail.backends.smtp.EmailBackend",
+# )
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com '
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='santuario44mx@gmail.com'
+EMAIL_HOST_PASSWORD = 'Enero1234+'
+
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
-EMAIL_TIMEOUT = 5
+# EMAIL_TIMEOUT = 5
 
 # ADMIN
 # ------------------------------------------------------------------------------

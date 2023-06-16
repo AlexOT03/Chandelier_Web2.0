@@ -1,0 +1,119 @@
+{% extends 'baseAdmin.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="container p-4">
+  <div class="row">
+    <h1>Welcome {{ user.username }}</h1>
+    <p>Access level: Administrador</p>
+</div>
+<div class="row p-2">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cotizaciones:</h5>
+                <i class="text-primary-emphasis">{{ num_orders }}</i>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ubicaciones:</h5>
+                <i class="text-primary-emphasis">{{ num_places }}</i>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Mensajes:</h5>
+                <i class="text-primary-emphasis">{{ num_messages }}</i>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Servicios:</h5>
+                <i class="text-primary-emphasis">{{ num_messages }}</i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row p-2">
+  <div class="col">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Cotizaciones:</h5>
+              <i class="text-primary-emphasis">{{ num_orders }}</i>
+          </div>
+      </div>
+  </div>
+  <div class="col">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Ubicaciones:</h5>
+              <i class="text-primary-emphasis">{{ num_places }}</i>
+          </div>
+      </div>
+  </div>
+  <div class="col">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Mensajes:</h5>
+              <i class="text-primary-emphasis">{{ num_messages }}</i>
+          </div>
+      </div>
+  </div>
+  <div class="col">
+      <div class="card">
+          <div class="card-body">
+              <h5 class="card-title">Servicios:</h5>
+              <i class="text-primary-emphasis">{{ num_messages }}</i>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row p-2">
+    <div class="col">
+      <div class="d-flex flex-column">
+        <a class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+          <span class="fs-5 fw-semibold">Cotizaciones Recientes</span>
+        </a>
+        <div class="list-group list-group-flush border-bottom scrollarea">
+          {% for message in messages %}
+          <a href="{% url 'messageInfo' message.id %}" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+              <strong class="mb-1">{{ message.name }}</strong>
+              <small>{{ message.date }}</small>
+            </div>
+            <div class="col-10 mb-1 small">{{ message.message }}</div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="col">
+        <div class="d-flex flex-column">
+            <a class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
+              <span class="fs-5 fw-semibold">Mensajes Recientes</span>
+            </a>
+            <div class="list-group list-group-flush border-bottom scrollarea">
+              {% for message in messages %}
+              <a href="{% url 'messageInfo' message.id %}" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                  <strong class="mb-1">{{ message.name }}</strong>
+                  <small>{{ message.date }}</small>
+                </div>
+                <div class="col-10 mb-1 small">{{ message.message }}</div>
+              </a>
+              {% endfor %}
+            </div>
+          </div>
+    </div>
+</div>
+</section>
+{% endblock %}

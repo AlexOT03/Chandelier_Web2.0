@@ -229,7 +229,7 @@ DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = "admin/"
+ADMIN_URL = "admin-django/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [("""Jesus Alejandro Ortiz Trejo""", "jesus-alejandro-ortiz-trejo@chandelier.com.mx")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers

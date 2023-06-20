@@ -1,43 +1,46 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.forms import formset_factory
-from . import models, form
-from django.contrib import messages 
+from .models import Location
+from .form import LocationsForm, OpeningHoursForm
 
 # Create your views here.
 class LocationsView(LoginRequiredMixin, View):
-    template_name = 'AdminLocations.html'
-
     def get(self, request, *args, **kwargs):
-        ubicaciones = models.Location.objects.all()
-        ubicacion_form = form.LocationsForm()
-        HorarioFormSet = formset_factory(form.OpeningHoursForm, extra=7)
-        horario_formset = HorarioFormSet()
-
-        return render(request, self.template_name, {
-            'locations': ubicaciones,
-            'ubicacion_form': ubicacion_form,
-            'horario_formset': horario_formset
+        locations = Location.objects.all()
+        form_locations = LocationsForm()
+        form_class = formset_factory(OpeningHoursForm, extra=0, min_num=7, validate_min=True)
+        form_hours = form_class(initial=[
+            {'day_of_week': 1},  # Lunes
+            {'day_of_week': 2},  # Martes
+            {'day_of_week': 3},  # Miércoles
+            {'day_of_week': 4},  # Jueves
+            {'day_of_week': 5},  # Viernes
+            {'day_of_week': 6},  # Sábado
+            {'day_of_week': 7},  # Domingo
+        ])
+        
+        return render(request, 'AdminLocations.html', {
+            'locations': locations,
+            'form_locations': form_locations,
+            'form_hours': form_hours,
         })
-
+    
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':
-            ubicacion_form = form.LocationsForm(request.POST, request.FILES)
-            HorarioFormSet = formset_factory(form.OpeningHoursForm, extra=7)
-            horario_formSet = HorarioFormSet(request.POST)
-            
-            if ubicacion_form.is_valid():
-                if horario_formSet.is_valid():
-                    ubicacion = ubicacion_form.save()
+            form_locations = LocationsForm(request.POST, request.FILES)
+            form_class = formset_factory(OpeningHoursForm, extra=7)
+            form_hours = form_class(request.POST)
+        
+            if form_locations.is_valid() and form_hours.is_valid():
+                location = form_locations.save()
                 
-                    horarios = horario_formSet.save(commit=False)
-                    for horario in horarios:
-                        horario.location = ubicacion
-                        horario.save()
-                    else:
-                        print ("error en la base de datos")
+                for form in form_hours:
+                   hours = form.save(commit=False)
+                   hours.location = location
+                   hours.save()
             else:
-                print("error detectado en el apartado ubicacion")
-                
+                return HttpResponse('<script>alert("El formulario no es válido"); window.location.href="/admin/ubicaciones/";</script>')
         return redirect('AdminLocations')

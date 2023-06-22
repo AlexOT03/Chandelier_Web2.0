@@ -27,3 +27,33 @@ class ServicesView(LoginRequiredMixin, View):
             'form': formulario,
             'services': servicios,
             })
+        
+    def show(self, request, id, **kwargs):
+        service = models.Service.objects.get(id=id)
+        return render(request, 'AdminServicesInfo.html', {
+            'service': service
+        })
+    
+    def update(self, request, id, **kwargs):
+        service = models.Service.objects.get(id=id)
+    
+        if request.method == 'POST':
+            service_form = form.ServicesForm(request.POST, instance=service)
+    
+            if service_form.is_valid():
+                service_form.save()  # Guardar los cambios en el formulario
+                return redirect('AdminServices')  # Redirigir a la página de éxito
+    
+        else:
+            service_form = form.ServicesForm(instance=service)
+    
+        return render(request, 'AdminServicesEdit.html', {
+            'service': service,
+            'form': service_form
+        })
+
+    
+    def delete(self, request, id):
+       service = models.Service.objects.get(id=id)
+       service.delete()
+       return redirect('AdminServices')

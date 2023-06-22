@@ -15,8 +15,9 @@
   
   .scrollview-item {
     flex: 0 0 auto;
-    width: 180px;
+    width: 115px;
     height: auto;
-    margin-right: 20px;
-    scroll-snap-align: start;
+    /* margin-right: 10px; */
+    margin: 5px 10px;
+    /* scroll-snap-align: start; */
   }

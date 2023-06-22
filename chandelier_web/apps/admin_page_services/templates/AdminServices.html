@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
+
+{% load static %}{% load crispy_forms_tags %}
 
 {% block title %}Servicios{% endblock %}
 
@@ -8,13 +8,15 @@
 <div class="container px-4 py-4">
     <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-            <h2>Nuevo Servicio</h2>
             <div class="card">
+                <div class="card-header">
+                    <h2>Nuevo Servicio</h2>
+                </div>
                 <div class="card-body">
                     <form method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
                     </form>
                 </div>
             </div>
@@ -37,9 +39,9 @@
                             <td>{{ service.id }}</td>
                             <td>{{ service.name }}</td>
                             <td>{{ service.description|truncatechars:50 }}</td>
-                            <td><a href="#" class="btn btn-info">Info</a></td>
-                            <td><a href="#" class="btn btn-warning">Edit</a></td>
-                            <td><a href="#" class="btn btn-danger">Delete</a></td>
+                            <td><a href="{% url 'AdminServicesInfo' service.id %}" class="btn btn-info">Detalles</a></td>
+                            <td><a href="{% url 'AdminServicesEdit' service.id %}" class="btn btn-warning">Editar</a></td>
+                            <td><a href="{% url 'AdminServicesDelete' service.id %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

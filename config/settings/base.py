@@ -2,6 +2,7 @@
 Base settings to build other settings files upon.
 """
 from pathlib import Path
+# import os
 
 import environ
 
@@ -25,7 +26,14 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "America/Mexico_City"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "es-mx"
+
+# _ = lambda s: s
+# LANGUAGES = (
+#     ('es' _('Español')),
+#     ('en' _('Ingles')),
+# )
+
 # https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = 1
 # https://docs.djangoproject.com/en/dev/ref/settings/#use-i18n
@@ -182,6 +190,9 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "chandelier_web.users.context_processors.allauth_settings",
             ],
+            "libraries": {
+                'custom_tags': 'chandelier_web.apps.home_page.custom_tags',  
+            },
         },
     }
 ]

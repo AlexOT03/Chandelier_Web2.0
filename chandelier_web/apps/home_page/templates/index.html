@@ -82,7 +82,7 @@
 <!-- Places Section -->
 <section class="section section-sm" id="get-start">
     <div class="container">
-        <div class="row">
+        <div class="row pb-4">
             <h2 class="">Lugares para eventos por zonas</h2>
             <h6 class="">Seleccione una zona para empezar a explorar.</h6>
         </div>
@@ -94,7 +94,7 @@
                         <a href="{% url 'locationHome' 'estado' estado.id %}">
                             <img src="{{ estado.images.url}}" class="img-fluid rounded-circle"
                                 alt="Imagen 1">
-                            <h3>{{ estado.name }}</h3>
+                            <h3 class="text text-center m-3">{{ estado.name }}</h3>
                         </a>
                     </div>
                     {% endfor %}
@@ -218,18 +218,19 @@
                     {% for location in locations %}
                     <div class="col">
                         <div class="card shadow-hover">
-                            <img src="{% static 'img/signature.svg' %}" class="card-img-top" alt="..." />
+                            <img src="{{ location.images.url}}" class="card-img-top" alt="..." />
                             <div class="card-body">
                                 <h5 class="card-title">{{ location.name }}</h5>
                                 <h6 class="card-subtitle">{{ location.location }}</h6>
                                 <div class="card-text">
-                                    <b>Tematica</b> | <small>{{ location.them.id }}</small>
+                                    <b>Tematica</b> | 
+                                    <small>{{ location.theme }}</small>
                                 </div>
                                 <p class="card-text">
                                     <b>$</b> <small>{{ location.price }}</small> | <span
-                                        class="fas fa-user-circle"></span><small>{{ location.capacity }}</small>
+                                        class="fas fa-user-circle"></span> <small>{{ location.capacity }}</small>
                                 </p>
-                                <a href="{% url 'locationInfoHome' 1 %}" class="btn btn-primary">Mas informacion</a>
+                                <a href="{% url 'locationInfoHome' location.id %}" class="btn btn-primary">Mas informacion</a>
                             </div>
                         </div>
                     </div>
@@ -360,7 +361,10 @@
             <ul class="">
                 {% for estado in estados %}
                 <li class="p-2 d-flex justify-content-between shadow-hover">
-                    <a href="">{{ estado.name }}</a><small>0</small>
+                    <a href="">{{ estado.name }}</a>
+                    <small>
+                        
+                    </small>
                 </li>
                 {% endfor %}
             </ul>

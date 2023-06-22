@@ -13,8 +13,13 @@
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        {% if error_vr %}
+                            <div class="alert alert-danger">
+                                {{ error_vr }}
+                            </div>
+                        {% endif %}
                         {{ form|crispy }}
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
                     </form>
                 </div>
             </div>
@@ -27,7 +32,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
-                            <th>Descripcion</th>
                             <th>Imagen</th>
                             <th colspan="3">Options</th>
                         </tr>
@@ -37,11 +41,10 @@
                         <tr>
                             <td>{{ state.id }}</td>
                             <td>{{ state.name }}</td>
-                            <td>{{ state.description|truncatechars:50 }}</td>
                             <td><img src="{{ state.images.url}}" alt="connect" class="img-fluid img-thumbnail"  style="max-height:50px"> </td>
-                            <td><a href="#" class="btn btn-info">Info</a></td>
-                            <td><a href="#" class="btn btn-warning">Edit</a></td>
-                            <td><a href="#" class="btn btn-danger">Delete</a></td>
+                            <td><a href="{% url 'AdminStatesInfo' state.id %}" class="btn btn-info">Detalles</a></td>
+                            <td><a href="{% url 'AdminStatesEdit' state.id %}" class="btn btn-warning">Editar</a></td>
+                            <td><a href="{% url 'AdminStatesDelete' state.id %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

@@ -1,0 +1,98 @@
+{% extends 'baseAdmin.html' %}
+{% load static %}{% load crispy_forms_tags %}
+
+{% block title %}Informacion "{{ location.name }}"{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-4">
+    <h2>Información sobre {{ location.name }}</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+            <div class="card-img-top">
+                <img src="{{ location.images.url }}" alt="{{ location.name }}" class="img-fluid">
+            </div>
+            <div class="card-body">
+                <h5>Descripcion</h5>
+                <p>{{ location.description }}</p>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ location.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ location.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Ubicacion</th>
+                        <td>{{ location.location }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dueño</th>
+                        <td>{{ location.owner }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cupo</th>
+                        <td>{{ location.capacity }} personas</td>
+                    </tr>
+                    <tr>
+                        <th>Precio</th>
+                        <td>${{ location.price }}</td>
+                    </tr>
+                    <tr>
+                        <th>Estado</th>
+                        <td>{{ location.state }}</td>
+                    </tr>
+                    <tr>
+                        <th>Tematica</th>
+                        <td>{{ location.theme }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha de registro</th>
+                        <td>{{ location.created_date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <h2>Horarios Laborales</h2>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Día</th>
+                      <th>Hora de Apertura</th>
+                      <th>Hora de Cierre</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for hours in opening_hours %}
+                        <tr>
+                            <td>{{ hours.get_day_of_week_display }}</td>
+                            <td>{{ hours.opening_time }}</td>
+                            <td>{{ hours.closing_time }}</td>
+                        </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>              
+        </div>
+    </div>
+    <div class="row pt-4">
+        <div class="col">
+            <a href="{% url 'AdminLocations' %}" class="btn btn-primary">Regresar</a>
+        </div>
+    </div>
+  </div>
+  
+{% endblock %}

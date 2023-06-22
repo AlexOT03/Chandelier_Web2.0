@@ -14,8 +14,14 @@
                     <div class="card-body">
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
+                            {% if error_vr %}
+                                <div class="alert alert-danger">
+                                    {{ error_vr }}
+                                </div>
+                            {% endif %}
                             {{ form_locations|crispy }}
-                            <div class="scrollview-wrapper-x">
+                            <label for="open-hours"><h6><strong>Horario</strong></h6></label>
+                            <div class="scrollview-wrapper-x" id="open-hours">
                                 {{ form_hours.management_form }}
                                 {% for form in form_hours %}
                                 <div class="scrollview-item">
@@ -23,7 +29,9 @@
                                 </div>
                                 {% endfor %}
                             </div>
-                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Registrar</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -46,9 +54,9 @@
                                 <td>{{ location.id }}</td>
                                 <td>{{ location.name }}</td>
                                 <td><img src="{{ location.images.url}}" alt="connect" class="img-fluid img-thumbnail"  style="max-height:50px"> </td>
-                                <td><a href="#" class="btn btn-info">Info</a></td>
-                                <td><a href="#" class="btn btn-warning">Edit</a></td>
-                                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                <td><a href="{% url 'AdminLocationInfo' location.id %}" class="btn btn-info">Detalles</a></td>
+                                <td><a href="{% url 'AdminLocationEdit' location.id %}" class="btn btn-warning">Editar</a></td>
+                                <td><a href="{% url 'AdminLocationDelete' location.id %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>

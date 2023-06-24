@@ -363,7 +363,15 @@
                 <li class="p-2 d-flex justify-content-between shadow-hover">
                     <a href="">{{ estado.name }}</a>
                     <small>
-                        
+                        <!-- {% for location in locations %}
+                            {% if estado.id == location.state %}
+                                {{ location.all.count }}
+                            {% endif %}
+                        {% endfor %} -->
+                        <!-- {% if estado.id == locations.state %}
+                            {{ locations.all.count }}
+                        {% endif %} -->
+                        {{ locations.all.count }}
                     </small>
                 </li>
                 {% endfor %}

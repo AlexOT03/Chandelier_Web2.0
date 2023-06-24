@@ -4,78 +4,143 @@
 {% block title %}Inicio{% endblock %}
 
 {% block content %}
-<section class="container p-4">
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Tablero</h1>
+  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <i class="fas fa-download fa-sm text-white-50"></i>
+    Generar Reporte
+  </a>
+</div>
+<div class="row">
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+              Earnings (Monthly)
+            </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              {{ location.count }}
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+              Earnings (Annual)
+            </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              $215,000
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-info shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+              Tasks
+            </div>
+            <div class="row no-gutters align-items-center">
+              <div class="col-auto">
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                  50%
+                </div>
+              </div>
+              <div class="col">
+                <div class="progress progress-sm mr-2">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pending Requests Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+              Pending Requests
+            </div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800">
+              18
+            </div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-comments fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <section class="container p-4">
   <div class="row">
     <h1>Welcome {{ user.username }}</h1>
-    <p>Access level: Administrador</p>
 </div>
 <div class="row p-2">
     <div class="col">
-        <div class="card">
+        <div class="card text-bg-blue">
             <div class="card-body">
-                <h5 class="card-title">Cotizaciones:</h5>
-                <i class="text-primary-emphasis">{{ num_orders }}</i>
+                <small class="card-title"><b>Cotizaciones:</b></small> <i class="bi bi-info-circle-fill"></i>
+                <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
             </div>
         </div>
     </div>
     <div class="col">
-        <div class="card">
+        <div class="card text-bg-purple">
             <div class="card-body">
-                <h5 class="card-title">Ubicaciones:</h5>
-                <i class="text-primary-emphasis">{{ num_places }}</i>
+              <small class="card-title"><b>Cotizaciones:</b></small> <i class="bi bi-info-circle-fill"></i>
+              <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
             </div>
         </div>
     </div>
     <div class="col">
-        <div class="card">
+        <div class="card text-bg-orange">
             <div class="card-body">
-                <h5 class="card-title">Mensajes:</h5>
-                <i class="text-primary-emphasis">{{ num_messages }}</i>
+              <small class="card-title"><b>Cotizaciones:</b></small> <i class="bi bi-info-circle-fill"></i>
+              <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
             </div>
         </div>
     </div>
     <div class="col">
-        <div class="card">
+        <div class="card text-bg-red">
             <div class="card-body">
-                <h5 class="card-title">Servicios:</h5>
-                <i class="text-primary-emphasis">{{ num_messages }}</i>
+              <small class="card-title"><b>Cotizaciones</b></small> <i class="bi bi-info-circle-fill"></i>
+              <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
             </div>
         </div>
     </div>
-</div>
-<div class="row p-2">
-  <div class="col">
-      <div class="card">
-          <div class="card-body">
-              <h5 class="card-title">Cotizaciones:</h5>
-              <i class="text-primary-emphasis">{{ num_orders }}</i>
-          </div>
-      </div>
-  </div>
-  <div class="col">
-      <div class="card">
-          <div class="card-body">
-              <h5 class="card-title">Ubicaciones:</h5>
-              <i class="text-primary-emphasis">{{ num_places }}</i>
-          </div>
-      </div>
-  </div>
-  <div class="col">
-      <div class="card">
-          <div class="card-body">
-              <h5 class="card-title">Mensajes:</h5>
-              <i class="text-primary-emphasis">{{ num_messages }}</i>
-          </div>
-      </div>
-  </div>
-  <div class="col">
-      <div class="card">
-          <div class="card-body">
-              <h5 class="card-title">Servicios:</h5>
-              <i class="text-primary-emphasis">{{ num_messages }}</i>
-          </div>
-      </div>
-  </div>
 </div>
 <div class="row p-2">
     <div class="col">
@@ -115,5 +180,5 @@
           </div>
     </div>
 </div>
-</section>
+</section> -->
 {% endblock %}

@@ -15,9 +15,9 @@ urlpatterns = [
     path('admin/mensajes/', AdminMessages.as_view(), name="AdminMessages"),
     
     path('admin/ubicaciones/', LocationsView.as_view(), name="AdminLocations"),
-    path('admin/ubicacion/<id>/eliminar/', LocationsView().delete, name="AdminLocationDelete"),
-    path('admin/ubicacion/<id>/informacion/', LocationsView().show, name="AdminLocationInfo"),
-    path('admin/ubicacion/<id>/editar/', LocationsView().update, name="AdminLocationEdit"),
+    path('admin/ubicacion/<id>/eliminar/', LocationsView().delete, name="AdminLocationsDelete"),
+    path('admin/ubicacion/<id>/informacion/', LocationsView().show, name="AdminLocationsInfo"),
+    path('admin/ubicacion/<id>/editar/', LocationsView().update, name="AdminLocationsEdit"),
     
     path('admin/servicios/', ServicesView.as_view(), name="AdminServices"),
     path('admin/servicios/<id>/eliminar/', ServicesView().delete, name="AdminServicesDelete"),

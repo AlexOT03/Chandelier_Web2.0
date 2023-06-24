@@ -4,59 +4,87 @@
 {% block title %}Ubicaciones{% endblock %}
 
 {% block content %}
-    <div class="container px-4 py-4">
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h2><strong>Nueva ubicacion</strong></h2>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {% if error_vr %}
-                                <div class="alert alert-danger">
-                                    {{ error_vr }}
-                                </div>
-                            {% endif %}
-                            {{ form_locations|crispy }}
-                            <label for="open-hours"><h6><strong>Horario</strong></h6></label>
-                            <div class="scrollview-wrapper-x" id="open-hours">
-                                {{ form_hours.management_form }}
-                                {% for form in form_hours %}
-                                <div class="scrollview-item">
-                                    {{ form|crispy }}
-                                </div>
-                                {% endfor %}
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Registrar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h2>Nueva Ubicacion</h2>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form_locations|crispy }}
+                    <label for="open-hours"><h6><strong>Horario</strong></h6></label>
+                    <div class="scrollview-wrapper-x mb-3" id="open-hours">
+                        {{ form_hours.management_form }}
+                        {% for form in form_hours %}
+                        <div class="scrollview-item">
+                            {{ form|crispy }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Registrar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
                 <h2>Ubicaciones</h2>
-                <div class="table-responsive py-2">
-                    <table class="table table-hover">
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Imagen</th>
-                                <th colspan="3">Options</th>
+                                <th colspan="3">Opciones</th>
                             </tr>
                         </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Imagen</th>
+                                <th colspan="3">Opciones</th>
+                            </tr>
+                        </tfoot>
                         <tbody>
                             {% for location in locations %}
                             <tr>
                                 <td>{{ location.id }}</td>
                                 <td>{{ location.name }}</td>
-                                <td><img src="{{ location.images.url}}" alt="connect" class="img-fluid img-thumbnail"  style="max-height:50px"> </td>
-                                <td><a href="{% url 'AdminLocationInfo' location.id %}" class="btn btn-info">Detalles</a></td>
-                                <td><a href="{% url 'AdminLocationEdit' location.id %}" class="btn btn-warning">Editar</a></td>
-                                <td><a href="{% url 'AdminLocationDelete' location.id %}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                                <td><img src="{{ location.images.url }}" class="img-fluid img-thumbnail img-sm" alt="{{ location.images }}"></td>
+                                <td><a href="{% url 'AdminLocationsInfo' location.id %}" class="btn btn-info">Detalles</a></td>
+                                <td><a href="{% url 'AdminLocationsEdit' location.id %}" class="btn btn-warning">Editar</a></td>
+                                <td><a class="btn btn-danger" data-toggle="modal" data-target="#alertModal">Eliminar</a></td>
+
+                                <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">¿Eliminar registro?</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                              Seleccione "Eliminar" a continuación si está listo para borrar permanentemente el registro actual.
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                                                  Cancelar
+                                                </button>
+                                                <a class="btn btn-primary" href="{% url 'AdminLocationsDelete' location.id %}">Eliminar</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -65,4 +93,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

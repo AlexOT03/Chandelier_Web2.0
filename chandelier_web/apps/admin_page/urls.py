@@ -7,12 +7,14 @@ from chandelier_web.apps.admin_page_themes.views import ThemesView
 from chandelier_web.apps.admin_page_states.views import  StatesView
 from chandelier_web.apps.admin_page_quotes.views import QuotesView
 
-urlpatterns = [
+urlpatterns = [  
     # URL para la vista de administrador
     path('admin/', AdminIndex.as_view(), name="AdminIndex"),
     path('admin/logout/', AdminIndex().logoutCrud, name="AdminLogout"),
     
     path('admin/mensajes/', AdminMessages.as_view(), name="AdminMessages"),
+    path('admin/mensaje/<id>/informacion/', AdminMessages().show, name="AdminMessagesInfo"),
+    path('admin/mensaje/<id>/eliminar/', AdminMessages().delete, name="AdminMessagesDelete"),
     
     path('admin/ubicaciones/', LocationsView.as_view(), name="AdminLocations"),
     path('admin/ubicacion/<id>/eliminar/', LocationsView().delete, name="AdminLocationsDelete"),

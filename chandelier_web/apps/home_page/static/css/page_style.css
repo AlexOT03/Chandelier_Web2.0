@@ -17,6 +17,11 @@
     scroll-snap-align: start;
   }
   
-  .colored-image-white {
-    filter: invert(100%);
-  }
+.colored-image-white {
+  filter: invert(100%);
+}
+  
+#back-to-top {
+  transition: 0.5s;
+  opacity: 0.8;
+}

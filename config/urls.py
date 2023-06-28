@@ -11,8 +11,8 @@ urlpatterns = [
     # # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # # User management
-    # path("users/", include("chandelier_web.users.urls", namespace="users")),
-    # path("accounts/", include("allauth.urls")),
+    path("users/", include("chandelier_web.users.urls", namespace="users")),
+    path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path('', include('chandelier_web.apps.home_page.urls')),
     path('', include('chandelier_web.apps.admin_page.urls')),

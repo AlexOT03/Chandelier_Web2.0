@@ -1,20 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from chandelier_web.apps.admin_page_locations.models import Location, OpeningHour
 from chandelier_web.apps.admin_page_states.models import State
 from chandelier_web.apps.admin_page_themes.models import Theme
+from chandelier_web.apps.home_page.models import Message
+from chandelier_web.apps.home_page.form import MessageForm
 
 # Create your views here.
 class indexHome(View):
     def get(self, request, *args, **kwargs):
         locations = Location.objects.all()
         estados = State.objects.all()
-        # estados_locations = State.objects.annotate(location_count=Count('ubicacion'))
-        temas = Theme.objects.all()
         return render(request, 'index.html', {
             'locations': locations, 
-            'estados': estados, 
-            'temas': temas,
+            'estados': estados,
             })
     
 class fastQuoteHome(View):
@@ -63,4 +62,18 @@ class aboutUsHome(View):
     
 class contactHome(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'contactUs.html')
+        form = MessageForm()
+        
+        return render(request, 'contactUs.html', {
+            'form': form,
+        })
+    
+    def post(self, request, *args, **kwargs):
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            return render(request, 'contactUs.html', {
+                'form': form,
+            })
+        return redirect('contactHome')

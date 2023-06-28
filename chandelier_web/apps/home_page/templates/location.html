@@ -11,13 +11,15 @@
     <div class="container p-3">
         <div class="row justify-content-between align-items-center">
             <div class="col-12 col-md-7 col-lg-6 text-center text-md-left">
-                <!-- <div class="bootstrap-big-icon d-none d-lg-block">
-                    <img src="{{ dato.images.url}}"  alt="" width="800" height="800" class="d-block my-1 colored-image-white">
+                <!-- <div class="img-big-icon d-none d-lg-block image-container">
+                    <img src="{{ dato.images.url}}" alt="" width="700" height="622" class="d-block my-1">
                 </div> -->
                 <h1 class="display-2 mb-2">{{ dato.name }}</h1>
                 <p class="lead mb-2 text-muted">{{ dato.description }}</p>
             </div>
-            <div class="col-12 col-md-5 d-none d-md-block text-center"><img src="{{ dato.images.url}}" alt=""></div>
+            <div class="col-12 col-md-5 d-none d-md-block text-center image-container">
+                <img src="{{ dato.images.url}}" alt="">
+            </div>
        </div>
         </div>
     </div>
@@ -47,14 +49,14 @@
                                 <img src="{{ location.images.url}}" class="card-img-top" alt="..." />
                                 <div class="card-body">
                                     <h5 class="card-title">{{ location.name }}</h5>
-                                    <h6 class="card-subtitle">{{ location.location }}</h6>
+                                    <p class="card-subtitle">{{ location.location }}</p>
                                     <div class="card-text">
-                                        <b>Tematica</b> | 
+                                        <strong>Tematica</strong> | 
                                         <small>{{ location.theme }}</small>
                                     </div>
                                     <p class="card-text">
-                                        <b>$</b> <small>{{ location.price }}</small> | <span
-                                            class="fas fa-user-circle"></span> <small>{{ locatiop.capacity }}</small>
+                                        <strong>$</strong> <small>{{ location.price }}</small> | <span
+                                            class="fas fa-user-circle"></span> <small>{{ location.capacity }}</small>
                                     </p>
                                     <a href="{% url 'locationInfoHome' location.id %}" class="btn btn-primary">Mas informacion</a>
                                 </div>

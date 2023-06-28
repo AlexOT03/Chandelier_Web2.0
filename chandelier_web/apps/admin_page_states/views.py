@@ -53,6 +53,6 @@ class StatesView(LoginRequiredMixin ,View):
         })
     
     def delete(self, request, id):
-       location = models.State.objects.get(id=id)
-       location.delete()
-       return redirect('AdminLocations')
+       state = models.State.objects.get(id=id)
+       state.delete()
+       return redirect('AdminStates')

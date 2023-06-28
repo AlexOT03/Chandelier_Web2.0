@@ -5,6 +5,14 @@
 
 {% block content %}
 <div class="row">
+    <nav aria-label="breadcrumb" class="ml-3">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'AdminIndex' %}">Tablero</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ubicaciones</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -56,36 +64,37 @@
                         </tfoot>
                         <tbody>
                             {% for location in locations %}
-                            <tr>
-                                <td>{{ location.id }}</td>
-                                <td>{{ location.name }}</td>
-                                <td><img src="{{ location.images.url }}" class="img-fluid img-thumbnail img-sm" alt="{{ location.images }}"></td>
-                                <td><a href="{% url 'AdminLocationsInfo' location.id %}" class="btn btn-info">Detalles</a></td>
-                                <td><a href="{% url 'AdminLocationsEdit' location.id %}" class="btn btn-warning">Editar</a></td>
-                                <td><a class="btn btn-danger" data-toggle="modal" data-target="#alertModal">Eliminar</a></td>
-
-                                <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">¿Eliminar registro?</h5>
-                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                              Seleccione "Eliminar" a continuación si está listo para borrar permanentemente el registro actual.
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                                  Cancelar
-                                                </button>
-                                                <a class="btn btn-primary" href="{% url 'AdminLocationsDelete' location.id %}">Eliminar</a>
+                                <tr>
+                                    <td>{{ location.id }}</td>
+                                    <td>{{ location.name }}</td>
+                                    <td><img src="{{ location.images.url }}" class="img-fluid img-thumbnail img-sm" alt="{{ location.images }}"></td>
+                                    <td><a href="{% url 'AdminLocationsInfo' location.id %}" class="btn btn-circle btn-info"><i class="fas fa-info-circle"></i></a></td>
+                                    <td><a href="{% url 'AdminLocationsEdit' location.id %}" class="btn btn-circle btn-warning"><i class="fa-solid fa-pen-to-square"></i></a></td>
+                                    <td>
+                                        <a class="btn btn-circle btn-danger" data-toggle="modal" data-target="#alertModal{{ location.id }}"><i class="fas fa-trash"></i></a>
+                                        <div class="modal fade" id="alertModal{{ location.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">¿Eliminar {{ location.name }}?</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Esta acción es irreversible y borrará toda la información asociada al registro. Para confirmar, haz clic en el botón "Eliminar". Para cancelar la acción, haz clic en el botón "Cancelar".
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                                                            Cancelar
+                                                        </button>
+                                                        <a class="btn btn-danger" href="{% url 'AdminLocationsDelete' location.id %}">Eliminar</a>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </tr>
+                                    </td>
+                                </tr>
                             {% endfor %}
                         </tbody>
                     </table>

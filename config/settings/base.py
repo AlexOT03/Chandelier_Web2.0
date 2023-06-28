@@ -189,6 +189,9 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "chandelier_web.users.context_processors.allauth_settings",
+                "chandelier_web.apps.admin_page.context_processors.messages",
+                "chandelier_web.apps.home_page.context_processors.themes",
+                "chandelier_web.apps.home_page.context_processors.states",
             ],
             "libraries": {
                 'custom_tags': 'chandelier_web.apps.home_page.custom_tags',  
@@ -240,7 +243,7 @@ DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL.
-ADMIN_URL = "admin-django/"
+ADMIN_URL = "super-admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
 ADMINS = [("""Jesus Alejandro Ortiz Trejo""", "jesus-alejandro-ortiz-trejo@chandelier.com.mx")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers

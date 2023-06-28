@@ -90,10 +90,14 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-              Pending Requests
+              Mensajes
             </div>
             <div class="h5 mb-0 font-weight-bold text-gray-800">
-              18
+              {% if messages %}
+                {{ messages.count }}
+              {% else %}
+                0
+              {% endif %}
             </div>
           </div>
           <div class="col-auto">
@@ -104,81 +108,4 @@
     </div>
   </div>
 </div>
-<!-- <section class="container p-4">
-  <div class="row">
-    <h1>Welcome {{ user.username }}</h1>
-</div>
-<div class="row p-2">
-    <div class="col">
-        <div class="card text-bg-blue">
-            <div class="card-body">
-                <small class="card-title"><b>Cotizaciones:</b></small> <i class="bi bi-info-circle-fill"></i>
-                <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-bg-purple">
-            <div class="card-body">
-              <small class="card-title"><b>Cotizaciones:</b></small> <i class="bi bi-info-circle-fill"></i>
-              <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-bg-orange">
-            <div class="card-body">
-              <small class="card-title"><b>Cotizaciones:</b></small> <i class="bi bi-info-circle-fill"></i>
-              <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card text-bg-red">
-            <div class="card-body">
-              <small class="card-title"><b>Cotizaciones</b></small> <i class="bi bi-info-circle-fill"></i>
-              <h4 class="card-text"><b>{{ location.all.count }}</b></h4>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row p-2">
-    <div class="col">
-      <div class="d-flex flex-column">
-        <a class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
-          <span class="fs-5 fw-semibold">Cotizaciones Recientes</span>
-        </a>
-        <div class="list-group list-group-flush border-bottom scrollarea">
-          {% for message in messages %}
-          <a href="{% url 'messageInfo' message.id %}" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
-            <div class="d-flex w-100 align-items-center justify-content-between">
-              <strong class="mb-1">{{ message.name }}</strong>
-              <small>{{ message.date }}</small>
-            </div>
-            <div class="col-10 mb-1 small">{{ message.message }}</div>
-          </a>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-    <div class="col">
-        <div class="d-flex flex-column">
-            <a class="d-flex align-items-center flex-shrink-0 p-3 link-body-emphasis text-decoration-none border-bottom">
-              <span class="fs-5 fw-semibold">Mensajes Recientes</span>
-            </a>
-            <div class="list-group list-group-flush border-bottom scrollarea">
-              {% for message in messages %}
-              <a href="{% url 'messageInfo' message.id %}" class="list-group-item list-group-item-action py-3 lh-sm" aria-current="true">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                  <strong class="mb-1">{{ message.name }}</strong>
-                  <small>{{ message.date }}</small>
-                </div>
-                <div class="col-10 mb-1 small">{{ message.message }}</div>
-              </a>
-              {% endfor %}
-            </div>
-          </div>
-    </div>
-</div>
-</section> -->
 {% endblock %}
